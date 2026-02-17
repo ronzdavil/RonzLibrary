@@ -1,184 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RonzStore Downloads</title>
-    <style>
-        /* Global Styles */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f7f8fa;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RonzStore Downloads</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f8fa;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
 
-        header {
-            background-color: #0d6efd;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
+    header {
+      background-color: #0d6efd;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
 
-        header img {
-            max-width: 150px;
-        }
+    header img {
+      max-width: 150px;
+    }
 
-        header h1 {
-            margin: 10px 0 0 0;
-            font-size: 28px;
-        }
+    header h1 {
+      margin: 10px 0 0 0;
+      font-size: 28px;
+    }
 
-        header p {
-            margin: 5px 0 0 0;
-            font-size: 16px;
-            color: #e0e0e0;
-        }
+    header p {
+      margin: 5px 0 0 0;
+      font-size: 16px;
+      color: #e0e0e0;
+    }
 
-        main {
-            padding: 40px 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
+    main {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
 
-        .file-card {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            padding: 25px;
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.2s;
-        }
+    /* File Card */
+    .file-card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
 
-        .file-card:hover {
-            transform: translateY(-5px);
-        }
+    .file-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
 
-        .file-card h2 {
-            margin: 0 0 10px 0;
-            font-size: 22px;
-            color: #0d6efd;
-        }
+    .file-icon {
+      font-size: 50px;
+      margin-bottom: 15px;
+    }
 
-        .file-card p {
-            margin: 0 0 15px 0;
-            color: #555;
-        }
+    /* File Type Icons using Emoji */
+    .pdf { color: #e74c3c; }    /* Red PDF */
+    .zip { color: #f39c12; }    /* Orange ZIP */
+    .video { color: #8e44ad; }  /* Purple Video */
+    .doc { color: #3498db; }    /* Blue DOC */
+    .img { color: #27ae60; }    /* Green Image */
 
-        .file-type {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: white;
-        }
+    .file-card h2 {
+      font-size: 20px;
+      color: #0d6efd;
+      margin: 10px 0;
+    }
 
-        /* File type colors */
-        .pdf { background-color: #e74c3c; }    /* Red */
-        .zip { background-color: #f39c12; }    /* Orange */
-        .video { background-color: #8e44ad; }  /* Purple */
-        .doc { background-color: #3498db; }    /* Blue */
-        .img { background-color: #27ae60; }    /* Green */
+    .file-card p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 15px;
+    }
 
-        .download-btn {
-            background-color: #0d6efd;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-            width: fit-content;
-            transition: all 0.3s ease;
-        }
+    .download-btn {
+      background-color: #0d6efd;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
 
-        .download-btn:hover {
-            background-color: #0956c5;
-            transform: scale(1.05);
-        }
+    .download-btn:hover {
+      background-color: #0956c5;
+      transform: scale(1.05);
+    }
 
-        footer {
-            text-align: center;
-            padding: 20px 0;
-            background: #f0f2f5;
-            color: #777;
-            margin-top: 40px;
-        }
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      background: #f0f2f5;
+      color: #777;
+      margin-top: 40px;
+    }
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            .file-card {
-                padding: 20px;
-            }
+    footer a {
+      color: #0d6efd;
+      text-decoration: none;
+    }
 
-            header h1 {
-                font-size: 24px;
-            }
-        }
-    </style>
+    @media (max-width: 600px) {
+      header h1 { font-size: 24px; }
+      .file-card h2 { font-size: 18px; }
+      .file-card p { font-size: 13px; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <img src="https://ronzstore.vercel.app/logo.png" alt="RonzStore Logo">
-        <h1>RonzStore Downloads</h1>
-        <p>Download your files instantly from our secure cloud</p>
-    </header>
+  <!-- Header -->
+  <header>
+    <img src="/logo.png" alt="RonzStore Logo">
+    <h1>RonzStore Downloads</h1>
+    <p>Download your files instantly from our secure cloud</p>
+  </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- File 1 -->
-        <div class="file-card">
-            <span class="file-type pdf">PDF</span>
-            <h2>File 1: Sample PDF</h2>
-            <p>This is a sample PDF file. Click the button below to download it instantly.</p>
-            <a class="download-btn" 
-               href="https://drive.google.com/uc?export=download&id=1rv-Oj6shYsZ8VUSacARpLLz0JmG8QXE7" 
-               target="_blank">
-               ⬇ Download Now
-            </a>
-        </div>
+  <!-- Main Content -->
+  <main>
+    <!-- File 1 -->
+    <div class="file-card">
+      <div class="file-icon pdf">📄</div>
+      <h2>Sample PDF</h2>
+      <p>Download this PDF document instantly.</p>
+      <a class="download-btn" href="https://drive.google.com/uc?export=download&id=1rv-Oj6shYsZ8VUSacARpLLz0JmG8QXE7" target="_blank">
+        ⬇ Download
+      </a>
+    </div>
 
-        <!-- File 2 -->
-        <div class="file-card">
-            <span class="file-type zip">ZIP</span>
-            <h2>File 2: Example ZIP</h2>
-            <p>This is an example ZIP file containing multiple documents. Click below to download.</p>
-            <a class="download-btn" 
-               href="https://drive.google.com/uc?export=download&id=YOUR_SECOND_FILE_ID" 
-               target="_blank">
-               ⬇ Download Now
-            </a>
-        </div>
+    <!-- File 2 -->
+    <div class="file-card">
+      <div class="file-icon zip">🗜️</div>
+      <h2>Example ZIP</h2>
+      <p>Contains multiple documents. Click below to download.</p>
+      <a class="download-btn" href="https://drive.google.com/uc?export=download&id=YOUR_SECOND_FILE_ID" target="_blank">
+        ⬇ Download
+      </a>
+    </div>
 
-        <!-- File 3 -->
-        <div class="file-card">
-            <span class="file-type video">VIDEO</span>
-            <h2>File 3: Tutorial Video</h2>
-            <p>This is a tutorial video. Click below to download it instantly.</p>
-            <a class="download-btn" 
-               href="https://drive.google.com/uc?export=download&id=YOUR_THIRD_FILE_ID" 
-               target="_blank">
-               ⬇ Download Now
-            </a>
-        </div>
+    <!-- File 3 -->
+    <div class="file-card">
+      <div class="file-icon video">🎬</div>
+      <h2>Tutorial Video</h2>
+      <p>Download this video tutorial directly.</p>
+      <a class="download-btn" href="https://drive.google.com/uc?export=download&id=YOUR_THIRD_FILE_ID" target="_blank">
+        ⬇ Download
+      </a>
+    </div>
 
-        <!-- Add more files by copying the .file-card block -->
-    </main>
+    <!-- File 4 -->
+    <div class="file-card">
+      <div class="file-icon doc">📘</div>
+      <h2>Word Document</h2>
+      <p>Download this DOC file instantly.</p>
+      <a class="download-btn" href="https://drive.google.com/uc?export=download&id=YOUR_FOURTH_FILE_ID" target="_blank">
+        ⬇ Download
+      </a>
+    </div>
 
-    <!-- Footer -->
-    <footer>
-        &copy; 2026 RonzStore. All rights reserved. <br>
-        <a href="https://ronzstore.vercel.app" target="_blank" style="color:#0d6efd; text-decoration:none;">Visit RonzStore</a>
-    </footer>
+    <!-- Add more files by copying the .file-card block -->
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2026 RonzStore. All rights reserved. <br>
+    <a href="https://ronzstore.vercel.app" target="_blank">Visit RonzStore</a>
+  </footer>
 
 </body>
 </html>
